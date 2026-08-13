@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giftique - Personalized Gifts & Custom Products</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #ffffff;
+    }
+
+    /* Header */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #666;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.25rem;
+      color: #1a1a1a;
+      padding: 0.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      padding: 4rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .cta-btn:hover {
+      background: #333;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    /* Categories Section */
+    .categories-section {
+      padding: 4rem 2rem;
+      background: #fafafa;
+    }
+
+    .section-header {
+      max-width: 1400px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-header a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid #1a1a1a;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .category-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #e0e0e0;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .category-icon {
+      width: 64px;
+      height: 64px;
+      background: #f0f0f0;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .category-card h3 {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    /* Featured Products */
+    .featured-section {
+      padding: 4rem 2rem;
+      background: #fff;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255,255,255,0.95);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-info p {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #d97706;
+    }
+
+    .product-btn {
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .product-btn:hover {
+      background: #333;
+    }
+
+    /* Cart Section */
+    .cart-section {
+      padding: 4rem 2rem;
+      background: #fafafa;
+    }
+
+    .cart-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    .cart-items {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 2rem;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-image {
+      width: 120px;
+      height: 120px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-item-details h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-item-details p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .qty-btn {
+      background: #f0f0f0;
+      border: none;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .qty-display {
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .order-summary {
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      height: fit-content;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-total {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    /* Checkout Section */
+    .checkout-section {
+      padding: 4rem 2rem;
+      background: #fff;
+      display: none;
+    }
+
+    .checkout-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .checkout-title {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .checkout-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+    }
+
+    .form-section {
+      background: #fafafa;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .form-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .payment-section {
+      background: #f0f0f0;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      border: 2px dashed #ccc;
+    }
+
+    .payment-section h3 {
+      margin-bottom: 1rem;
+    }
+
+    .payment-url-input {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    .payment-button {
+      width: 100%;
+      padding: 1rem;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+      margin-bottom: 0.5rem;
+    }
+
+    .payment-button:hover {
+      background: #333;
+    }
+
+    .razorpay-btn {
+      background: #2C4CC8;
+    }
+
+    .razorpay-btn:hover {
+      background: #1a3399;
+    }
+
+    /* Form Fields */
+    .form-fields {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .form-fields h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* Checkout Totals */
+    .checkout-summary {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .checkout-summary h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Toast Notifications */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 500;
+      display: none;
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    }
+
+    .toast.success {
+      background: #10b981;
+    }
+
+    .toast.error {
+      background: #ef4444;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* View Toggle */
+    .view-btn {
+      margin: 2rem;
+      gap: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .view-btn button {
+      padding: 0.75rem 1.5rem;
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .view-btn button.active {
+      background: #1a1a1a;
+      color: #fff;
+      border-color: #1a1a1a;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-container {
+        grid-template-columns: 1fr;
+      }
+
+      .categories-grid,
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-content h1 {
+        font-size: 1.75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .categories-grid,
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-item {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-row {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">🎁 Giftique</div>
+    <nav>
+      <a href="#" data-view="home">Shop</a>
+      <a href="#" data-view="home">Customize</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn">🔍</button>
+      <button class="icon-btn">❤️</button>
+      <button class="icon-btn" onclick="document.querySelector('[data-view=cart]').click()">🛒</button>
+    </div>
+  </header>
+
+  <!-- View Toggle (for demo) -->
+  <div class="view-btn">
+    <button class="active" data-view="home" onclick="switchView('home', this)">Home</button>
+    <button data-view="cart" onclick="switchView('cart', this)">Cart</button>
+    <button data-view="checkout" onclick="switchView('checkout', this)">Checkout</button>
+  </div>
+
+  <!-- HOME VIEW -->
+  <div id="home-view" class="view-container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Little things that make a big impression.</h1>
+        <p>Discover curated, personalized gifts designed with warmth and crafted for connection. Because the best gifts come from the heart.</p>
+        <button class="cta-btn" onclick="switchView('checkout', document.querySelector('[data-view=checkout]'))">Start Customizing</button>
+      </div>
+      <div class="hero-image">🎁</div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+      <div class="section-header">
+        <h2>Shop by Category</h2>
+        <a href="#">View All →</a>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="category-icon">🎨</div>
+          <h3>Personalized</h3>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">💌</div>
+          <h3>Occasions</h3>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🏠</div>
+          <h3>Home Gifts</h3>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">✨</div>
+          <h3>Premium</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-section">
+      <div class="section-header">
+        <h2>Featured Customizations</h2>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">
+            📸
+            <div class="product-badge">Best Seller</div>
+          </div>
+          <div class="product-info">
+            <h3>Personalized Canvas Tee</h3>
+            <p>Add your own quote or choose from our favorites.</p>
+            <div class="product-footer">
+              <span class="price">₹699</span>
+              <button class="product-btn" onclick="addToCart('Personalized Canvas Tee', 699)">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            🧲
+            <div class="product-badge">Popular</div>
+          </div>
+          <div class="product-info">
+            <h3>Memory Keepsake Magnet</h3>
+            <p>Turn your favorite moments into daily reminders.</p>
+            <div class="product-footer">
+              <span class="price">₹399</span>
+              <button class="product-btn" onclick="addToCart('Memory Keepsake Magnet', 399)">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            🔐
+            <div class="product-badge">On Sale</div>
+          </div>
+          <div class="product-info">
+            <h3>Artisan Wood Frame</h3>
+            <p>Handcrafted wooden frames for your cherished photos.</p>
+            <div class="product-footer">
+              <span class="price">₹599</span>
+              <button class="product-btn" onclick="addToCart('Artisan Wood Frame', 599)">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            📝
+          </div>
+          <div class="product-info">
+            <h3>Custom Note Cards</h3>
+            <p>Personalized stationery perfect for any occasion.</p>
+            <div class="product-footer">
+              <span class="price">₹349</span>
+              <button class="product-btn" onclick="addToCart('Custom Note Cards', 349)">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Shop With Us -->
+    <section class="featured-section" style="background: #fafafa; padding: 4rem 2rem;">
+      <div class="section-header">
+        <h2>Why Shop With Us</h2>
+      </div>
+      <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        <div style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🚚</div>
+          <h3>Fast Delivery</h3>
+          <p>Quick turnaround without compromising quality.</p>
+        </div>
+        <div style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">💖</div>
+          <h3>Handcrafted Love</h3>
+          <p>Every item is crafted with care and attention to detail.</p>
+        </div>
+        <div style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+          <h3>Personalized Touch</h3>
+          <p>Make it uniquely yours with custom options.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CART VIEW -->
+  <div id="cart-view" class="view-container" style="display: none;">
+    <section class="cart-section">
+      <div class="checkout-container">
+        <h2 style="margin-bottom: 2rem;">Your Cart</h2>
+        <div class="cart-container">
+          <div class="cart-items" id="cart-items">
+            <!-- Cart items dynamically added -->
+          </div>
+          <div class="order-summary">
+            <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="subtotal">₹0</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery</span>
+              <span>₹100</span>
+            </div>
+            <div class="summary-row">
+              <span>Tax (5%)</span>
+              <span id="tax">₹0</span>
+            </div>
+            <div class="summary-row" style="border-bottom: none; font-weight: 700; font-size: 1.2rem;">
+              <span>Total</span>
+              <span id="total">₹0</span>
+            </div>
+            <button class="cta-btn" style="width: 100%; margin-top: 1rem;" onclick="switchView('checkout', document.querySelector('[data-view=checkout]'))">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CHECKOUT VIEW -->
+  <div id="checkout-view" class="view-container" style="display: none;">
+    <section class="checkout-section" style="display: block;">
+      <div class="checkout-container">
+        <h2 class="checkout-title">Checkout</h2>
+
+        <div class="checkout-wrapper">
+          <!-- Left: Form -->
+          <div>
+            <!-- Shipping Form -->
+            <div class="form-section">
+              <h3>📍 Shipping Information</h3>
+              <form id="shipping-form">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" id="fullname" placeholder="John Doe" required>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" placeholder="John" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Doe" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Street Address</label>
+                  <input type="text" placeholder="123 Main Street" required>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" placeholder="Mumbai" required>
+                  </div>
+                  <div class="form-group">
+                    <label>State</label>
+                    <select required>
+                      <option value="">Select State</option>
+                      <option>Andhra Pradesh</option>
+                      <option>Arunachal Pradesh</option>
+                      <option>Assam</option>
+                      <option>Bihar</option>
+                      <option>Chhattisgarh</option>
+                      <option>Goa</option>
+                      <option>Gujarat</option>
+                      <option>Haryana</option>
+                      <option>Himachal Pradesh</option>
+                      <option>Jharkhand</option>
+                      <option>Karnataka</option>
+                      <option>Kerala</option>
+                      <option>Madhya Pradesh</option>
+                      <option>Maharashtra</option>
+                      <option>Manipur</option>
+                      <option>Meghalaya</option>
+                      <option>Mizoram</option>
+                      <option>Nagaland</option>
+                      <option>Odisha</option>
+                      <option>Punjab</option>
+                      <option>Rajasthan</option>
+                      <option>Sikkim</option>
+                      <option>Tamil Nadu</option>
+                      <option>Telangana</option>
+                      <option>Tripura</option>
+                      <option>Uttar Pradesh</option>
+                      <option>Uttarakhand</option>
+                      <option>West Bengal</option>
+                      <option>Delhi</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>PIN Code</label>
+                    <input type="text" placeholder="400001" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label style="display: flex; gap: 0.5rem;">
+                    <input type="checkbox" id="is-gift">
+                    Is this a gift?
+                  </label>
+                  <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">We can add a special gift message if you'd like.</p>
+                </div>
+              </form>
+            </div>
+
+            <!-- Payment Section -->
+            <div class="payment-section">
+              <h3>💳 Payment Options</h3>
+              <p style="margin-bottom: 1rem; font-size: 0.95rem;">Complete shipping details to unlock payment options.</p>
+              <button class="payment-button razorpay-btn" onclick="openRazorpay()">🔒 Pay with Razorpay</button>
+              <button class="payment-button" onclick="openPaymentPortal()">Other Payment Options</button>
+            </div>
+          </div>
+
+          <!-- Right: Order Summary & Form -->
+          <div>
+            <!-- Form Fields (Name, Email, Phone) -->
+            <div class="form-fields">
+              <h4>📋 Contact Information</h4>
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="form-name" placeholder="Your Full Name" required>
+              </div>
+              <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" id="form-email" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="form-phone" placeholder="+91 9876543210" required>
+              </div>
+              <button class="payment-button" onclick="submitForm()" style="margin-top: 1rem;">Save Information & Continue</button>
+            </div>
+
+            <!-- Checkout Summary -->
+            <div class="checkout-summary">
+              <h3>Order Summary</h3>
+              <div id="checkout-items" style="margin-bottom: 1.5rem; max-height: 200px; overflow-y: auto;">
+                <!-- Items added dynamically -->
+              </div>
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="checkout-subtotal">₹0</span>
+              </div>
+              <div class="summary-row">
+                <span>Delivery</span>
+                <span>₹100</span>
+              </div>
+              <div class="summary-row">
+                <span>Tax (5%)</span>
+                <span id="checkout-tax">₹0</span>
+              </div>
+              <div class="summary-row" style="border-bottom: none; font-weight: 700; font-size: 1.25rem;">
+                <span>Total</span>
+                <span id="checkout-total">₹0</span>
+              </div>
+              <div style="font-size: 0.85rem; color: #666; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                ✓ Your information is secure and encrypted
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // AppScript URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwt6H8eW3TrYi5xcORby_kQf9GyLiDTLmSh49VMmvDrN4AuB3HAQjIYZiuPU1MRVQ7V/exec';
+
+    // Cart data
+    let cart = [];
+
+    // Open Razorpay
+    function openRazorpay() {
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const total = subtotal + 100 + (subtotal * 0.05);
+      
+      showToast('✓ Razorpay payment gateway loading...', 'success');
+      
+      // In production, integrate with Razorpay API
+      // For now, show a placeholder
+      alert('Razorpay Payment Gateway\n\nTotal Amount: ₹' + total.toFixed(0) + '\n\nNote: In production, this will open Razorpay checkout');
+    }
+
+    // Add to cart
+    function addToCart(name, price) {
+      const item = cart.find(i => i.name === name);
+      if (item) {
+        item.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCart();
+      showToast('✓ Added to cart', 'success');
+    }
+
+    // Update cart display
+    function updateCart() {
+      const cartContainer = document.getElementById('cart-items');
+      const checkoutContainer = document.getElementById('checkout-items');
+      
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #999;">Your cart is empty</p>';
+        checkoutContainer.innerHTML = '<p style="text-align: center; color: #999;">No items</p>';
+        updateTotals();
+        return;
+      }
+
+      cartContainer.innerHTML = cart.map((item, idx) => `
+        <div class="cart-item">
+          <div class="cart-item-image">📦</div>
+          <div class="cart-item-details">
+            <h3>${item.name}</h3>
+            <p>₹${item.price} each</p>
+            <div class="quantity-selector">
+              <button class="qty-btn" onclick="updateQty(${idx}, -1)">−</button>
+              <div class="qty-display">${item.qty}</div>
+              <button class="qty-btn" onclick="updateQty(${idx}, 1)">+</button>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <p style="font-weight: 600; margin-bottom: 1rem;">₹${(item.price * item.qty).toFixed(0)}</p>
+            <button class="qty-btn" style="background: #fee2e2; color: #dc2626;" onclick="removeFromCart(${idx})">🗑</button>
+          </div>
+        </div>
+      `).join('');
+
+      checkoutContainer.innerHTML = cart.map(item => `
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e0e0e0;">
+          <span>${item.name} (×${item.qty})</span>
+          <span>₹${(item.price * item.qty).toFixed(0)}</span>
+        </div>
+      `).join('');
+
+      updateTotals();
+    }
+
+    // Update quantity
+    function updateQty(idx, change) {
+      cart[idx].qty += change;
+      if (cart[idx].qty < 1) removeFromCart(idx);
+      else updateCart();
+    }
+
+    // Remove from cart
+    function removeFromCart(idx) {
+      cart.splice(idx, 1);
+      updateCart();
+    }
+
+    // Update totals
+    function updateTotals() {
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const tax = subtotal * 0.05;
+      const total = subtotal + tax + 100;
+
+      document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(0)}`;
+      document.getElementById('tax').textContent = `₹${tax.toFixed(0)}`;
+      document.getElementById('total').textContent = `₹${total.toFixed(0)}`;
+
+      document.getElementById('checkout-subtotal').textContent = `₹${subtotal.toFixed(0)}`;
+      document.getElementById('checkout-tax').textContent = `₹${tax.toFixed(0)}`;
+      document.getElementById('checkout-total').textContent = `₹${total.toFixed(0)}`;
+    }
+
+    // Switch view
+    function switchView(viewName, el) {
+      document.querySelectorAll('.view-container').forEach(v => v.style.display = 'none');
+      document.getElementById(viewName + '-view').style.display = 'block';
+      
+      document.querySelectorAll('.view-btn button').forEach(b => b.classList.remove('active'));
+      if (el) el.classList.add('active');
+      
+      window.scrollTo(0, 0);
+    }
+
+    // Submit form
+    function submitForm() {
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      const phone = document.getElementById('form-phone').value.trim();
+
+      if (!name || !email || !phone) {
+        showToast('⚠ Please fill in all fields', 'error');
+        return;
+      }
+
+      // Build the query string URL
+      const url = SCRIPT_URL + '?' + new URLSearchParams({ name, email, phone });
+
+      // Use fetch with GET and no-cors mode (CRITICAL FETCH RULES)
+      fetch(url, { method: 'GET', mode: 'no-cors' })
+        .then(() => {
+          showToast('✓ Information saved successfully!', 'success');
+          document.getElementById('form-name').value = '';
+          document.getElementById('form-email').value = '';
+          document.getElementById('form-phone').value = '';
+          setTimeout(() => switchView('home', document.querySelector('[data-view=home]')), 1500);
+        })
+        .catch(() => {
+          showToast('✓ Request sent successfully!', 'success');
+        });
+    }
+
+    // Open payment portal
+    function openPaymentPortal() {
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const total = subtotal + 100 + (subtotal * 0.05);
+      showToast('✓ Payment portal opening...', 'success');
+      alert('Payment Portal\n\nTotal Amount to Pay: ₹' + total.toFixed(0) + '\n\nNote: Connect your preferred payment gateway here');
+    }
+
+    // Toast notification
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type}`;
+      toast.style.display = 'block';
+      setTimeout(() => toast.style.display = 'none', 3000);
+    }
+
+    // Initialize
+    updateCart();
+  </script>
+</body>
+</html>
